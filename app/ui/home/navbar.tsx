@@ -5,11 +5,11 @@ export default function Navbar() {
     const [activeTab, setActiveTab] = useState('home');
   
     const tabs = [
-      { name: 'Home', key: 'home', path: '/' },
-      { name: 'Create/Delete', key: 'create-delete', path: '/create-delete' },
-      { name: 'Open', key: 'open', path: '/open' },
-      { name: 'Vendor', key: 'vendor', path: '/vendor' },
-      { name: 'Closed Projects', key: 'closed-projects', path: '/closed-projects' },
+      { name: 'Home', key: 'home', path: '/home' },
+      { name: 'Create/Delete', key: 'create-delete', path: '/home/create-delete' },
+      { name: 'Open', key: 'open', path: '/home/open' },
+      { name: 'Vendor', key: 'vendor', path: '/home/vendor' },
+      { name: 'Closed Projects', key: 'closed-projects', path: '/home/closed-projects' },
     ];
   
     return (
