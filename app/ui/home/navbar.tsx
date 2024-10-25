@@ -7,8 +7,8 @@ export default function Navbar() {
   
     const tabs = [
       { name: 'Home', key: 'home', path: '/home' },
-      { name: 'Create/Delete', key: 'create-delete', path: '/home/create-delete' },
-      { name: 'Open', key: 'open', path: '/home/open' },
+      { name: 'Create /Delete', key: 'create-delete', path: '/home/create-delete' },
+      { name: 'Open Projects', key: 'open', path: '/home/open' },
       { name: 'Vendor', key: 'vendor', path: '/home/vendor' },
       { name: 'Closed Projects', key: 'closed-projects', path: '/home/closed-projects' },
     ];
@@ -37,7 +37,7 @@ export default function Navbar() {
   
           {/* Right side: Logout button */}
           <div className="flex items-center ml-auto">
-          <button className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
+          <button className="bg-red-500 font-bold hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
               Logout
             </button>
           </div>
