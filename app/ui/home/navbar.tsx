@@ -14,7 +14,7 @@ export default function Navbar() {
     ];
   
     return (
-      <nav className="bg-blue-600 text-white">
+      <nav className="bg-cyan-600 text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Left side: Tab links */}
           <div className="flex space-x-6">
@@ -25,8 +25,8 @@ export default function Navbar() {
                     onClick={() => setActiveTab(tab.key)}
                     className={`${
                     activeTab === tab.key
-                        ? 'text-blue-600 bg-white'
-                        : 'text-white hover:bg-blue-500'
+                        ? 'text-cyan-600 bg-white hover:bg-gray-300'
+                        : 'text-white hover:bg-cyan-400'
                     } px-4 py-2 rounded-md transition-colors duration-200`}
                 >
                 {tab.name}
@@ -37,7 +37,7 @@ export default function Navbar() {
   
           {/* Right side: Logout button */}
           <div>
-            <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors duration-200">
+          <button className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
               Logout
             </button>
           </div>
