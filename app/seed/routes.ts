@@ -51,9 +51,9 @@ async function seedProjects() {
 
     const insertedProjects = await Promise.all(
         projects.map(async (project) => client.sql`
-            INSERT INTO projects (id, name, po, status, due_date, project_name)
-            VALUES (${project.id}, ${project.name}, ${project.po}, ${project.status}, ${project.due_date}, ${project.project_name})
-            ON CONFLICT (id) DO NOTHING;
+            INSERT INTO projects (salesid, name, po, status, due_date, project_name, clientid, vendorid)
+            VALUES (${project.salesid}, ${project.name}, ${project.po}, ${project.status}, ${project.due_date}, ${project.project_name}, ${project.clientid}, ${project.vendorid})
+            ON CONFLICT (salesid) DO NOTHING;
           `,
         ),
     );
@@ -66,7 +66,7 @@ async function seedClient() {
     await client.sql`CREATE EXTENSION IF NOT EXISTS “uuid-ossp”`;
     await client.sql`
         CREATE TABLE IF NOT EXISTS clients (
-            business_id UUID PRIMARY KEY,
+            business_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             clientid INTEGER NOT NULL,
             business_name VARCHAR(255) NOT NULL,
             phone_number TEXT NOT NULL,
@@ -77,9 +77,9 @@ async function seedClient() {
     `;
     const insertedClients = await Promise.all(
         clients.map(async (item) => client.sql`
-            INSERT INTO clients (id, name, po, status, due_date, project_name)
+            INSERT INTO clients (business_id, clientid, business_name, phone_number, email, notes, client_name)
             VALUES (${item.business_id}, ${item.clientid}, ${item.business_name}, ${item.phone_number}, ${item.email}, ${item.notes}, ${item.client_name})
-            ON CONFLICT (id) DO NOTHING;
+            ON CONFLICT (business_id) DO NOTHING;
         `,
         ),
     );
@@ -92,7 +92,7 @@ async function seedVendors()  {
     await client.sql`CREATE EXTENSION IF NOT EXISTS “uuid-ossp”`;
     await client.sql `
         CREATE TABLE IF NOT EXISTS vendors (
-            company_id UUID PRIMARY KEY,
+            company_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             vendorid INTEGER NOT NULL,
             company_name VARCHAR(255) NOT NULL,
             email VARCHAR(100) NOT NULL UNIQUE,
@@ -105,9 +105,9 @@ async function seedVendors()  {
 
     const insertedVendors = await Promise.all(
         vendors.map(async (vendor) => client.sql`
-            INSERT INTO vendors (id, name, po, status, due_date, project_name)
+            INSERT INTO vendors (company_id, vendorid, company_name, email, address, phone_number, ask, price_plan)
             VALUES (${vendor.company_id}, ${vendor.vendorid}, ${vendor.company_name}, ${vendor.email}, ${vendor.address}, ${vendor.phone_number}, ${vendor.ask}, ${vendor.price_plan})
-            ON CONFLICT (id) DO NOTHING;
+            ON CONFLICT (company_id) DO NOTHING;
           `,
         ),
     );
@@ -132,6 +132,7 @@ export async function GET() {
     }
 }
 
+{ /** 
 async function runSeeds() {
 try {
     await seedUsers();
@@ -147,3 +148,4 @@ console.log('Seeding completed.');
 }
 
 runSeeds();
+*/}
