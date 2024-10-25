@@ -14,10 +14,10 @@ export default function Navbar() {
     ];
   
     return (
-      <nav className="bg-gradient-to-r from-gray-500 to-cyan-600 text-white">
+      <nav className="bg-gradient-to-r from-gray-500 to-cyan-600 text-3xl text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Left side: Tab links */}
-          <div className="flex space-x-6">
+          <div className="flex space-x-6 items-center">
             <DefaultLogo />
             {tabs.map((tab) => (
               <Link href={tab.path} key={tab.key}>
@@ -36,7 +36,7 @@ export default function Navbar() {
           </div>
   
           {/* Right side: Logout button */}
-          <div>
+          <div className="flex items-center ml-auto">
           <button className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
               Logout
             </button>
