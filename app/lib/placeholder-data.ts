@@ -197,7 +197,7 @@ const vendors = [
     },
     {
         company_id: '7c5012c2-7eb0-49ea-bc31-0a8ff7070a8a',
-        vendorid: 012345,
+        vendorid: 123456,
         company_name: 'Distinctive Events',
         email: 'orders@distinctiveevents.com',
         address: '100 Event St, Boston, MA',
