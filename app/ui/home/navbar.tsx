@@ -14,7 +14,7 @@ export default function Navbar() {
     ];
   
     return (
-      <nav className="bg-cyan-600 text-white">
+      <nav className="bg-gradient-to-r from-gray-500 to-cyan-600 text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Left side: Tab links */}
           <div className="flex space-x-6">
@@ -25,8 +25,8 @@ export default function Navbar() {
                     onClick={() => setActiveTab(tab.key)}
                     className={`${
                     activeTab === tab.key
-                        ? 'text-cyan-600 bg-white hover:bg-gray-300'
-                        : 'text-white hover:bg-cyan-400'
+                        ? 'text-white-600 font-bold bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl'
+                        : 'text-white-600 font-bold hover:bg-gradient-to-br from-cyan-600 to-gray-400'
                     } px-4 py-2 rounded-md transition-colors duration-200`}
                 >
                 {tab.name}
