@@ -259,254 +259,254 @@ const vendors = [
 
 const projects = [
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-456789',
         status: 'open',
         due_date: '2024-11-01',
         project_name: 'Alpha Project',
-        clientid: 90001,
-        vendorid: 123456
+        clientid: clients[3].clientid,
+        vendorid: vendors[2].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-987654',
         status: 'closed',
         due_date: '2024-11-05',
         project_name: 'Beta Project',
-        clientid: 90002,
-        vendorid: 234567
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-321456',
         status: 'waiting for proof',
         due_date: '2024-11-10',
         project_name: 'Gamma Project',
-        clientid: 90003,
-        vendorid: 345678
+        clientid: clients[0].clientid,
+        vendorid: vendors[4].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-654321',
         status: 'in production',
         due_date: '2024-11-15',
         project_name: 'Delta Project',
-        clientid: 90004,
-        vendorid: 456789
+        clientid: clients[3].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-789123',
         status: 'ready to ship',
         due_date: '2024-11-20',
         project_name: 'Epsilon Project',
-        clientid: 90005,
-        vendorid: 567890
+        clientid: clients[1].clientid,
+        vendorid: vendors[2].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-123456',
         status: 'open',
         due_date: '2024-11-01',
         project_name: 'Zeta Project',
-        clientid: 90006,
-        vendorid: 678901
+        clientid: clients[1].clientid,
+        vendorid: vendors[0].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-654987',
         status: 'closed',
         due_date: '2024-11-05',
         project_name: 'Eta Project',
-        clientid: 90007,
-        vendorid: 789012
+        clientid: clients[0].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-321789',
         status: 'waiting for proof',
         due_date: '2024-11-10',
         project_name: 'Theta Project',
-        clientid: 90008,
-        vendorid: 890123
+        clientid: clients[1].clientid,
+        vendorid: vendors[3].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-987123',
         status: 'in production',
         due_date: '2024-11-15',
         project_name: 'Iota Project',
-        clientid: 90009,
-        vendorid: 901234
+        clientid: clients[0].clientid,
+        vendorid: vendors[2].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-567890',
         status: 'ready to ship',
         due_date: '2024-11-20',
         project_name: 'Kappa Project',
-        clientid: 90001,
-        vendorid: 012345
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-234567',
         status: 'open',
         due_date: '2024-11-01',
         project_name: 'Lambda Project',
-        clientid: 90002,
-        vendorid: 123890
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-876543',
         status: 'closed',
         due_date: '2024-11-05',
         project_name: 'Mu Project',
-        clientid: 90003,
-        vendorid: 234901
+        clientid: clients[6].clientid,
+        vendorid: vendors[0].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-567123',
         status: 'waiting for proof',
         due_date: '2024-11-10',
         project_name: 'Nu Project',
-        clientid: 90004,
-        vendorid: 345912
+        clientid: clients[8].clientid,
+        vendorid: vendors[8].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-456123',
         status: 'in production',
         due_date: '2024-11-15',
         project_name: 'Xi Project',
-        clientid: 90005,
-        vendorid: 456023
+        clientid: clients[2].clientid,
+        vendorid: vendors[9].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-789456',
         status: 'ready to ship',
         due_date: '2024-11-20',
         project_name: 'Omicron Project',
-        clientid: 90006,
-        vendorid: 567134
+        clientid: clients[7].clientid,
+        vendorid: vendors[7].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-321654',
         status: 'open',
         due_date: '2024-11-01',
         project_name: 'Pi Project',
-        clientid: 90007,
-        vendorid: 678901
+        clientid: clients[5].clientid,
+        vendorid: vendors[8].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-654321',
         status: 'closed',
         due_date: '2024-11-05',
         project_name: 'Rho Project',
-        clientid: 90008,
-        vendorid: 789012
+        clientid: clients[9].clientid,
+        vendorid: vendors[9].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-987654',
         status: 'waiting for proof',
         due_date: '2024-11-10',
         project_name: 'Sigma Project',
-        clientid: 90009,
-        vendorid: 890123
+        clientid: clients[4].clientid,
+        vendorid: vendors[2].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-123789',
         status: 'in production',
         due_date: '2024-11-15',
         project_name: 'Tau Project',
-        clientid: 90001,
-        vendorid: 901234
+        clientid: clients[3].clientid,
+        vendorid: vendors[6].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-456987',
         status: 'ready to ship',
         due_date: '2024-11-20',
         project_name: 'Upsilon Project',
-        clientid: 90002,
-        vendorid: 012345
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-789321',
         status: 'open',
         due_date: '2024-11-01',
         project_name: 'Phi Project',
-        clientid: 90003,
-        vendorid: 123890
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-654789',
         status: 'closed',
         due_date: '2024-11-05',
         project_name: 'Chi Project',
-        clientid: 90004,
-        vendorid: 234901
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-321123',
         status: 'waiting for proof',
         due_date: '2024-11-10',
         project_name: 'Psi Project',
-        clientid: 90005,
-        vendorid: 345912
+        clientid: clients[1].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-987321',
         status: 'in production',
         due_date: '2024-11-15',
         project_name: 'Omega Project',
-        clientid: 90006,
-        vendorid: 456023
+        clientid: clients[0].clientid,
+        vendorid: vendors[1].vendorid
     },
     {
-        salesid: 123,
+        salesid: users[0].salesid,
         name: 'Allstar John',
         po: '123-654123',
         status: 'ready to ship',
         due_date: '2024-11-20',
         project_name: 'Theta Project',
-        clientid: 90007,
-        vendorid: 567134
+        clientid: clients[1].clientid,
+        vendorid: vendors[0].vendorid
     }
 ];
 
