@@ -37,16 +37,16 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-  <div className="bg-gray-200 p-8 rounded-lg shadow-lg w-full max-w-sm">
-    <h2 className="text-3xl font-bold text-center mb-6 text-cyan-600">Hungry Spider Project Management</h2>
+  <div className="bg-gray-400 p-8 rounded-lg shadow-lg w-full max-w-sm">
+    <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Hungry Spider Project Management</h2>
 
     <form>
       <div className="mb-4">
-        <label className="block text-gray-600 text-sm font-semibold mb-2" htmlFor="user">
+        <label className="block text-gray-800 text-sm font-semibold mb-2" htmlFor="user">
           User
         </label>
         <input
-          className="text-black w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="text-black w-full px-3 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
           type="user"
           id="user"
           placeholder="Enter your user ID"
@@ -54,11 +54,11 @@ const Login = () => {
       </div>
 
       <div className="mb-6">
-            <label className="block text-gray-600 text-sm font-semibold mb-2" htmlFor="password">
+            <label className="block text-gray-800 text-sm font-semibold mb-2" htmlFor="password">
               Password
             </label>
             <input
-              className="text-black w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="text-black w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               type={showPassword ? 'text' : 'password'}
               id="password"
               placeholder="Enter your password"
@@ -73,13 +73,13 @@ const Login = () => {
                 onChange={togglePasswordVisibility}
                 checked={showPassword}
               />
-              <span className="ml-2 text-gray-600 text-sm">Show Password</span>
+              <span className="ml-2 text-gray-800 text-sm">Show Password</span>
             </label>
           </div>
 
       <button
         type="submit"
-        className="bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl text-white font-bold py-2 px-4 rounded-lg w-full"
+        className="bg-gradient-to-br from-green-400 to-blue-600 border border-gray-700 hover:bg-gradient-to-bl text-white font-bold py-2 px-4 rounded-lg w-full"
       >
         Login
       </button>
