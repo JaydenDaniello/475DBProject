@@ -7,10 +7,10 @@ export default function Navbar() {
   
     const tabs = [
       { name: 'Home', key: 'home', path: '/home' },
-      { name: 'Create /Delete', key: 'create-delete', path: '/home/create-delete' },
-      { name: 'Open Projects', key: 'open', path: '/home/open' },
+      { name: 'Manage', key: 'create-delete', path: '/home/create-delete' },
+      { name: 'View', key: 'open', path: '/home/open' },
       { name: 'Vendor', key: 'vendor', path: '/home/vendor' },
-      { name: 'Closed Projects', key: 'closed-projects', path: '/home/closed-projects' },
+      { name: 'History', key: 'closed-projects', path: '/home/closed-projects' },
     ];
   
     return (
