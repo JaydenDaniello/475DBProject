@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react";
-//import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
- // const router = useRouter();
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+ 
   const [error, setError] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
@@ -16,22 +17,33 @@ const Login = () => {
   };
 
   // Simulate a login API
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(""); // Reset error state
 
-    // Very basic validation
-    if (!username || !password) {
-      setError("\nPlease fill in all fields");
-      return;
-    }
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-    // Simulate API call **Replace with actual API call in a real scenario**
-    if (username === "username" && password === "password") {
-      // Redirect after successful login
-    //  router.push("/dashboard");
-    } else {
-      setError("Invalid username or password");
+      const data = await response.json();
+
+      console.log('response data:', data);
+
+      if (!response.ok) throw new Error('Login failed'); 
+
+      const { token } = data;
+      document.cookie = `token=${token}; path=/`;
+      router.push('/home');
+
+    } catch (error) {
+      console.error("Request failed:", error);
     }
   };
 
@@ -40,16 +52,19 @@ const Login = () => {
   <div className="bg-gray-400 p-8 rounded-lg shadow-lg w-full max-w-sm">
     <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Hungry Spider Project Management</h2>
 
-    <form>
+    <form onSubmit={handleLogin}>
       <div className="mb-4">
         <label className="block text-gray-800 text-sm font-semibold mb-2" htmlFor="user">
           User
         </label>
         <input
           className="text-black w-full px-3 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          type="user"
+          type="text"
           id="user"
+          value={username}
           placeholder="Enter your user ID"
+          onChange={(e) => setUsername(e.target.value)}
+          required
         />
       </div>
 
@@ -59,9 +74,12 @@ const Login = () => {
             </label>
             <input
               className="text-black w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              value={password}
               type={showPassword ? 'text' : 'password'}
               id="password"
               placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
@@ -90,3 +108,23 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+    /*
+    setError(""); // Reset error state
+
+    // Very basic validation
+    if (!username || !password) {
+      setError("\nPlease fill in all fields");
+      return;
+    }
+
+    // Simulate API call **Replace with actual API call in a real scenario**
+    if (username === "username" && password === "password") {
+      // Redirect after successful login
+    //  router.push("/dashboard");
+    } else {
+      setError("Invalid username or password");
+    }
+      */
