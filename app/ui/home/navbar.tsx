@@ -1,8 +1,18 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import DefaultLogo from '@/app/ui/company-logos';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    //Clear session token
+    document.cookie = 'token=; Max-Age=0; path=/';
+    //Redirect to login page
+    router.push('/');
+  };
+
     const [activeTab, setActiveTab] = useState('home');
   
     const tabs = [
@@ -37,7 +47,8 @@ export default function Navbar() {
   
           {/* Right side: Logout button */}
           <div className="flex items-center ml-auto">
-          <button className="bg-red-500 font-bold hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
+          <button onClick={handleLogout}
+          className="bg-red-500 font-bold hover:bg-red-400 text-white px-4 py-2 rounded-md transition-colors duration-200">
               Logout
             </button>
           </div>
