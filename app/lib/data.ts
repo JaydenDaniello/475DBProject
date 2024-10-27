@@ -5,9 +5,16 @@ import {
     Vendor,
     Project,
 } from './definitions';
+import { jwtVerify } from "jose";
 
-export async function fetchUsers() {
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET as string);
+
+export async function fetchUsers(token: string) {
     try {
+        //Validate token before filling request
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        console.log('Token validated, user payload:', payload);
+
         const data = await sql<User>`SELECT * FROM users`;
         return data.rows;
     } catch (error) {
@@ -16,8 +23,12 @@ export async function fetchUsers() {
     }
 }
 
-export async function fetchClients() {
+export async function fetchClients(token: string) {
     try {
+        //Validate token before filling request
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        console.log('Token validated, user payload:', payload);
+
         const data = await sql<Client>`SELECT * FROM clients`;
         return data.rows;
     } catch (error) {
@@ -26,8 +37,12 @@ export async function fetchClients() {
     }
 }
 
-export async function fetchVendors() {
+export async function fetchVendors(token: string) {
     try {
+        //Validate token before filling request
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        console.log('Token validated, user payload:', payload);
+
         const data = await sql<Vendor>`SELECT * FROM vendors`;
         return data.rows;
     } catch (error) {
@@ -36,8 +51,12 @@ export async function fetchVendors() {
     }
 }
 
-export async function fetchProjects() {
+export async function fetchProjects(token: string) {
     try {
+        //Validate token before filling request
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        console.log('Token validated, user payload:', payload);
+        
         const data = await sql<Project>`SELECT * FROM projects`;
         return data.rows;
     } catch (error) {

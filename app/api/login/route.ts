@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
 import { getClient } from '@/app/lib/database';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import { User } from '@/app/lib/definitions';
+
 
 export async function POST(request: Request) {
     const client = await getClient();
@@ -28,9 +29,11 @@ export async function POST(request: Request) {
         }
 
         //Create token if successful
-        const token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET as string, {
-            expiresIn: '30m',
-        });
+        const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET as string);
+        const token = await new SignJWT({ userID: user.id })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setExpirationTime('30m')
+        .sign(JWT_SECRET);
 
         // Successful authentication
         return NextResponse.json({ 
