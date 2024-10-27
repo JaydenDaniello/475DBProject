@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { useState } from 'react';
 import DefaultLogo from '@/app/ui/company-logos';
@@ -5,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleLogout = () => {
     //Clear session token
@@ -17,7 +19,7 @@ export default function Navbar() {
   
     const tabs = [
       { name: 'Home', key: 'home', path: '/home' },
-      { name: 'Manage', key: 'create-delete', path: '/home/create-delete' },
+      { name: 'Manage', key: 'manage', path: '/home/manage' },
       { name: 'View', key: 'open', path: '/home/open' },
       { name: 'Vendor', key: 'vendor', path: '/home/vendor' },
       { name: 'History', key: 'closed-projects', path: '/home/closed-projects' },
@@ -54,5 +56,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
     );
   }
