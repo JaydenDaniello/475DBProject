@@ -58,8 +58,9 @@ export default async function Navbar() {
           </div>
         </div>
         {/* Home Page */ }
-      <div className="w-full bg-black from-cyan-600 to-gray-400 p-8 rounded-lg shadow-lg">
-        <HomePage />
+      <div>
+        { /* @ts-expect-error Async Server Component */ }
+          <HomePage />
       </div>
       </nav>
     </>
