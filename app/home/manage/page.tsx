@@ -14,7 +14,7 @@ export default async function Page() {
     //Puts all open projects into a Project array
     let openProjects: Project[] = projectList.filter(project => project.salesid === 123);
 
-    console.log(projectList);
+    
 
     return (
 

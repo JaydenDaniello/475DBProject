@@ -11,9 +11,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="w-full flex-none">
                 <Navbar />
             </div>
-            <div className="flex-grow p-6 md:overflow-y-auto">
-
+            <div className="flex-grow">
+                {children}
             </div>
+            
         </div>
     );
 }

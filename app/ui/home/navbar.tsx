@@ -2,11 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import DefaultLogo from '@/app/ui/company-logos';
 import { useRouter } from 'next/navigation';
-import { Project } from '@/app/lib/definitions';
-import HomePage from './manage';
-import React from 'react';
 
-export default async function Navbar() {
+export default function Navbar() {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -27,7 +24,6 @@ export default async function Navbar() {
     ];
   
     return (
-      <>
       <nav className="bg-gradient-to-r from-gray-500 to-cyan-600 text-3xl text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Left side: Tab links */}
@@ -57,13 +53,6 @@ export default async function Navbar() {
             </button>
           </div>
         </div>
-        {/* Home Page */ }
-      <div>
-        { /* @ts-expect-error Async Server Component */ }
-          <HomePage />
-      </div>
       </nav>
-    </>
-
     );
   }
