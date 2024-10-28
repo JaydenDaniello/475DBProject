@@ -1,10 +1,12 @@
-
 import Link from 'next/link';
 import { useState } from 'react';
 import DefaultLogo from '@/app/ui/company-logos';
 import { useRouter } from 'next/navigation';
+import { Project } from '@/app/lib/definitions';
+import HomePage from './manage';
+import React from 'react';
 
-export default function Navbar() {
+export default async function Navbar() {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -25,6 +27,7 @@ export default function Navbar() {
     ];
   
     return (
+      <>
       <nav className="bg-gradient-to-r from-gray-500 to-cyan-600 text-3xl text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Left side: Tab links */}
@@ -54,7 +57,12 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+        {/* Home Page */ }
+      <div className="w-full bg-black from-cyan-600 to-gray-400 p-8 rounded-lg shadow-lg">
+        <HomePage />
+      </div>
       </nav>
+    </>
 
     );
   }
