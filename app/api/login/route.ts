@@ -10,11 +10,8 @@ export async function POST(request: Request) {
     try {
         const { username, password } = await request.json();
 
-        console.log('Fetching user with salesid:', username);
-
         // Fetch user from the database by username
         const result = await client.sql`SELECT * FROM users WHERE salesid = ${username} LIMIT 1`;
-        console.log('Query result:', result);
 
         const user: User | null = result.rows[0] ? (result.rows[0] as User) : null;
 
