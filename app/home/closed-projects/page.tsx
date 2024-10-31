@@ -1,6 +1,7 @@
 import { fetchProjects } from "@/app/lib/data";
 import { Project } from "@/app/lib/definitions";
 import { cookies } from "next/headers";
+import ProjectTable from "@/app/ui/home/ProjectTable";
 
 export default async function Page() {
     //Get token from cookie
@@ -16,6 +17,8 @@ export default async function Page() {
 
 
     return (
-        <main></main>
+        <main className="flex justify-center items-center min-h-screen bg-black">
+            <ProjectTable projects={closedProjects} />
+        </main>
     );
 }

@@ -57,7 +57,9 @@ export async function fetchProjects(token: string) {
         const { payload } = await jwtVerify(token, JWT_SECRET);
         console.log('Token validated, user payload:', payload);
         
-        const data = await sql<Project>`SELECT * FROM projects`;
+        const data = await sql<Project>`
+        SELECT * FROM projects
+        ORDER BY due_date`;
         return data.rows;
     } catch (error) {
         console.error('Database error: ', error);
