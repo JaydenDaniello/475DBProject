@@ -66,3 +66,42 @@ export async function fetchProjects(token: string) {
         throw new Error('Failed to fetch project data');
     }
 }
+
+const ITEMS_PER_PAGE = 6;
+export async function fetchFilteredProjects(
+    query: string,
+    currentPage: number,
+) {
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+    try {
+        const projects = await sql<Project>`
+        SELECT 
+          projects.salesid,
+          projects.name,
+          projects.po,
+          projects.status,
+          projects.due_date,
+          projects.project_name,
+          projects.clientid,
+          projects.vendorid
+        FROM projects
+        WHERE
+          projects.salesid ILIKE ${`%${query}%`} OR
+          projects.name ILIKE ${`%${query}%`} OR
+          projects.po ILIKE ${`%${query}%`} OR
+          projects.status ILIKE ${`%${query}%`} OR
+          projects.due_date ILIKE ${`%${query}%`} OR
+          projects.project_name ILIKE ${`%${query}%`} OR
+          projects.clientid ILIKE ${`%${query}%`} OR
+          projects.vendorid ILIKE ${`%${query}%`}
+        ORDER BY projects.due_date DESC
+        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+        `;
+
+        return projects.rows;
+    } catch (error) {
+        console.error('Database error: ', error);
+        throw new Error('Failed to fetch filtered projects.');
+    }
+}

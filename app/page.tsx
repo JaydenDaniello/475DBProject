@@ -40,6 +40,7 @@ const Login = () => {
 
       const { token } = data;
       document.cookie = `token=${token}; path=/`;
+      document.cookie = `username=${encodeURIComponent(username)}; path=/`
       router.push('/home');
 
     } catch (error) {
