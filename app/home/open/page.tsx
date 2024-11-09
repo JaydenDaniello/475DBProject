@@ -1,6 +1,7 @@
-import { fetchProjects } from "@/app/lib/data";
-import { Project } from "@/app/lib/definitions";
+import { fetchUsers, fetchClients, fetchProjects, fetchVendors } from "@/app/lib/data";
 import { cookies } from "next/headers";
+import { Project } from "@/app/lib/definitions";
+import ProjectTable from "@/app/ui/home/ProjectTable";
 
 export default async function Page() {
     //Get token from cookie
@@ -11,10 +12,13 @@ export default async function Page() {
     if (!token) throw new Error('No token found');
 
     const projectList = await fetchProjects(token);
-    //Puts all open projects into a Project array
-    let openProjects: Project[] = projectList.filter(project => project.status === 'open');
+    //Puts all projects into a Project array
+    let projects: Project[] = projectList;
+
 
     return (
-        <main></main>
+        <main className="flex justify-center items-center min-h-screen bg-black">
+            <ProjectTable projects={projects} />
+        </main>
     );
 }

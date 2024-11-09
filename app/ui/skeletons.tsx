@@ -30,6 +30,34 @@ export default function HomeSkeleton() {
     );
 }
 
+export function TableSkeleton() {
+    return (
+        <div className="flex justify-center items-center min-h-screen bg-black-900">
+            <div className="w-full max-w-2xl p-8 bg-black-900 rounded-lg shadow-lg">
+                <div className="animate-pulse space-y-8">
+                    {/* Table Header Skeleton */}
+                    <div className="flex justify-between space-x-4">
+                        <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                        <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                        <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                        <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                    </div>
+
+                    {/* Table Rows Skeleton */}
+                    {[...Array(10)].map((_, index) => (
+                        <div key={index} className="flex justify-between space-x-8">
+                            <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                            <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                            <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                            <div className="h-6 bg-gray-300 rounded w-1/4"></div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function LoginSkeleton() {
         return (
             <div
