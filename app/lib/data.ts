@@ -66,7 +66,6 @@ export async function fetchProjects(token: string) {
         throw new Error('Failed to fetch project data');
     }
 }
-<<<<<<< HEAD
 
 const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredProjects(
@@ -106,5 +105,3 @@ export async function fetchFilteredProjects(
         throw new Error('Failed to fetch filtered projects.');
     }
 }
-=======
->>>>>>> 9924ff3421ea7a349a5a898c5cfbd68cc28a1260
