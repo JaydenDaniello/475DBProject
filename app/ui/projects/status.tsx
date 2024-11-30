@@ -12,7 +12,7 @@ export default function ProjectStatus({ status }: { status: string }) {
         },
       )}
     >
-      {status === 'open' ? (
+      {status !== 'closed' ? (
         <>
           Pending
           <ClockIcon className="ml-1 w-4 text-gray-500" />
@@ -20,7 +20,7 @@ export default function ProjectStatus({ status }: { status: string }) {
       ) : null}
       {status === 'closed' ? (
         <>
-          Paid
+          Closed
           <CheckIcon className="ml-1 w-4 text-white" />
         </>
       ) : null}

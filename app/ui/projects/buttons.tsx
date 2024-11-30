@@ -1,3 +1,5 @@
+"use client";
+
 import { deleteProject } from '@/app/lib/actions';
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -26,11 +28,30 @@ export function UpdateProject({ id }: { id: string }) {
   }
 
   export function DeleteProject({ id }: { id: string }) {
-    async function deleteProjectWithID(formData: FormData) {
-        await deleteProject(id);
-    }
+    // Prebind the ID to the delete function
+    const deleteProjectWithID = deleteProject.bind(null, id);
+
+    // Handle form submission on the client side
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        await deleteProjectWithID(); // Call the bound function
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <button className="rounded-md border p-2 hover:bg-gray-100">
+                <span className="sr-only">Delete</span>
+                <TrashIcon className="w-5" />
+            </button>
+        </form>
+    );
+}
+
+  /*export function DeleteProject({ id }: { id: string }) {
     
-    //const deleteProjectWithId = deleteProject.bind(null, id);
+    const deleteProjectWithID = (FormData: FormData) => {
+      return deleteProject(id).then(() => {});
+    };
     return (
       <form action={deleteProjectWithID}>
         <button className="rounded-md border p-2 hover:bg-gray-100">
@@ -39,4 +60,21 @@ export function UpdateProject({ id }: { id: string }) {
         </button>
       </form>
     );
-  }
+  }*/
+
+  /*
+  export function DeleteInvoice({ id }: { id: string }) {
+    const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+    return (
+      <form action={deleteInvoiceWithId}>
+        <button className="rounded-md border p-2 hover:bg-gray-100">
+          <span className="sr-only">Delete</span>
+          <TrashIcon className="w-5" />
+        </button>
+      </form>
+    );
+  }*/
+
+    /*async function deleteProjectWithID(formData: FormData) {
+        await deleteProject(id);
+    }*/
