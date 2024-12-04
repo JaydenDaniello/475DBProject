@@ -32,21 +32,32 @@ export default async function Page(props: {
     
 
     return (
-
-        <div className="w-full">
-      <div className="flex w-full items-center justify-between">
-        <h1 className={`text-2xl`}>Projects</h1>
+      <div className="flex justify-center items-center min-h-screen bg-black">
+        {/* Container */}
+        <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+          {/* Header */}
+          <div className="flex w-full items-center justify-between border-b pb-4">
+            <h1 className="text-2xl text-black font-semibold">Projects</h1>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <Search placeholder="Search Projects..." />
+            {/* Uncomment if needed */}
+            {/* <CreateInvoice /> */}
+          </div>
+    
+          {/* Table Content */}
+          <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
+            <Table query={query} currentPage={currentPage} />
+          </Suspense>
+    
+          {/* Pagination */}
+          <div className="mt-6 flex justify-center">
+            <Pagination totalPages={totalPages} />
+          </div>
+        </div>
       </div>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search Projects..." />
-        {/*<CreateInvoice />*/}
-      </div>
-      <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
-      </Suspense>
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
-      </div>
-    </div>
     );
+    
 }
