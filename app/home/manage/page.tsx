@@ -43,8 +43,6 @@ export default async function Page(props: {
           {/* Search Bar */}
           <div className="mt-4 flex items-center justify-between gap-4">
             <Search placeholder="Search Projects..." />
-            {/* Uncomment if needed */}
-            {/* <CreateInvoice /> */}
           </div>
     
           {/* Table Content */}
@@ -53,7 +51,7 @@ export default async function Page(props: {
           </Suspense>
     
           {/* Pagination */}
-          <div className="mt-6 flex justify-center">
+          <div className="text-black mt-6 flex justify-center">
             <Pagination totalPages={totalPages} />
           </div>
         </div>
