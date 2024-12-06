@@ -16,7 +16,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
     const id = params.id;
 
-    const projects = await fetchProjectByID('123-999999', token);
+    const projects = await fetchProjectByID(id, token);
     if (!projects) throw new Error('No project found'); 
 
 
@@ -27,7 +27,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
           { label: 'Manage', href: '/home/manage' },
           {
             label: 'Edit Project',
-            href: `/home/manage/123-999999/edit`,
+            href: `/home/manage/${id}/edit`,
             active: true,
           },
         ]}
