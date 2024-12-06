@@ -1,6 +1,7 @@
 import { fetchProjects } from "@/app/lib/data";
 import Breadcrumbs from "@/app/ui/projects/breadcrumbs";
 import { cookies } from "next/headers";
+import CreateProjectForm from "@/app/ui/projects/create-form";
 
 export default async function Page() {
     //Get token from cookie
@@ -24,7 +25,7 @@ export default async function Page() {
                     },
                 ]}
             />
-            {/*<Form customers={customers} />*/}
+            {<CreateProjectForm />}
         </main>
     );
 }

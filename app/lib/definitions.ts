@@ -40,3 +40,14 @@ export type Project = {
     clientid: number;
     vendorid: number;
 }
+
+export type ProjectForm = {
+    salesid: number;
+    name: string;
+    po: string;
+    status: string;
+    due_date: string;
+    project_name: string;
+    clientid: number;
+    vendorid: number;
+}

@@ -19,7 +19,7 @@ export function CreateProject() {
 export function UpdateProject({ id }: { id: string }) {
     return (
       <Link
-        href={`/dashboard/invoices/${id}/edit`}
+        href={`/home/manage/${id}/edit`}
         className="rounded-md border p-2 hover:bg-gray-100"
       >
         <PencilIcon className="w-5" />
@@ -46,6 +46,7 @@ export function UpdateProject({ id }: { id: string }) {
         </form>
     );
 }
+
 
   /*export function DeleteProject({ id }: { id: string }) {
     
