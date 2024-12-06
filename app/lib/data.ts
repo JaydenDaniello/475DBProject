@@ -170,20 +170,22 @@ export async function upsertProject(
     updates: Partial<Project>
 ) {
     console.log('Token in upsert: ', token);
-    console.log('JWT: ', JWT_SECRET);
     //Validate token before filling request
     const { payload } = await jwtVerify(token, JWT_SECRET);
     console.log('Token validated, user payload:', payload);
 
-    const project = await fetchProjectByID(id, token);
-    console.log('in Update', project);
+    let project = null;
+    if (id) {
+    project = await fetchProjectByID(id, token);
+    console.log('Project to update:', project);
+    }
 
-    if (!project) {
+    if (!project && id) {
         throw new Error('Project not found');
     }
 
     // Handle null or undefined updates by keeping values from the existing project if necessary
-    if (updates.clientid == null) {
+    /**if (updates.clientid == null) {
         updates.clientid = project[0].clientid;
     }
     if (updates.due_date == null) {
@@ -206,9 +208,43 @@ export async function upsertProject(
     }
     if (updates.vendorid == null) {
         updates.vendorid = project[0].vendorid;
-    }
+    }*/
 
-    console.log('Print updates: ', updates);
+    const finalUpdates: Partial<Project> = {};
+    // If this is an update, fill in information which wasn't included
+    if (project) {
+    finalUpdates.po = updates.po ?? project[0]?.po;
+    finalUpdates.salesid = updates.salesid ?? project[0]?.salesid;
+    finalUpdates.name = updates.name ?? project[0]?.name;
+    finalUpdates.status = updates.status ?? project[0]?.status;
+    finalUpdates.due_date = updates.due_date ?? project[0]?.due_date;
+    finalUpdates.project_name = updates.project_name ?? project[0]?.project_name;
+    finalUpdates.clientid = updates.clientid ?? project[0]?.clientid;
+    finalUpdates.vendorid = updates.vendorid ?? project[0]?.vendorid;
+    } else {
+    // If this is an insert, fill all values with form data
+    finalUpdates.po = updates.po;
+    finalUpdates.salesid = updates.salesid;
+    finalUpdates.name = updates.name;
+    finalUpdates.status = updates.status;
+    finalUpdates.due_date = updates.due_date;
+    finalUpdates.project_name = updates.project_name;
+    finalUpdates.clientid = updates.clientid;
+    finalUpdates.vendorid = updates.vendorid;
+    }
+    
+    // Validation: Ensure no required fields are null or undefined
+const requiredFields: (keyof Partial<Project>)[] = [
+    "po", "salesid", "name", "status", "due_date", "project_name", "clientid", "vendorid"
+];
+
+for (const field of requiredFields) {
+    if (finalUpdates[field] == null) {  // Checks for both null and undefined
+        throw new Error(`Field ${field} is required and cannot be null or undefined`);
+    }
+}
+    
+        console.log('Final updates:', finalUpdates);
 
     try {
         // Use INSERT ... ON CONFLICT for upsert (insert or update)

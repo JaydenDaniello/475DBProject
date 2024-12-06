@@ -15,11 +15,9 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     
     const params = await props.params;
     const id = params.id;
-    console.log('ID: ', id);
+
     const projects = await fetchProjectByID('123-999999', token);
-    if (!projects)
-        throw new Error('No project found'); 
-    console.log('Fetched project:', projects[0]);
+    if (!projects) throw new Error('No project found'); 
 
 
   return (

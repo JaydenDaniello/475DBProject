@@ -2,29 +2,62 @@
 
 import { Project } from '@/app/lib/definitions';
 import Link from 'next/link';
-import { Button } from '@/app/ui/button';
-import { createProject } from '@/app/lib/actions';
+import moment from 'moment-timezone';
 
-import { useState } from "react";
+export default function CreateProjectForm({
+  token,
+}: {
+  token: string;
+}) {
 
-export default function CreateProjectForm() {
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-
-    const formData = new FormData(e.currentTarget);
+  console.log("Create received token:", token);
+  const handleSubmit = async (formData: FormData) => {
+    console.log("Token before fetch: ", token);
+    const updates: Partial<Project> = {
+      salesid: parseInt(formData.get('salesid') as string, 10) || undefined,
+      name: formData.get('name') as string,
+      po: formData.get('po') as string,
+      status: formData.get('status') as string,
+      due_date: formData.get('due_date') ? moment(formData.get('due_date') as string).tz('America/New_York').format() : undefined,  // Convert to ISO string
+      project_name: formData.get('project_name') as string,
+      clientid: parseInt(formData.get('clientid') as string, 10) || undefined,
+      vendorid: parseInt(formData.get('vendorid') as string, 10) || undefined,
+    };
 
     try {
-      await createProject(formData); // Call the server action
-    } catch (err: any) {
-      setError(err.message || "Failed to create invoice.");
+
+      const response = await fetch('/api/upsertProject', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ token, updates })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Update successful:', result);
+        alert('Project updated successfully!');
+      } else {
+        console.error('Update failed:', result.error);
+        alert('Error: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        const formData = new FormData(e.currentTarget); // Collect form data
+        await handleSubmit(formData); // Await handleSubmit asynchronously
+      }}
+    >
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Sales ID */}
         <div className="mb-4">
@@ -162,7 +195,7 @@ export default function CreateProjectForm() {
         </button>
       </div>
 
-      {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+      {/*{error && <p className="mt-4 text-sm text-red-500">{error}</p>}*/}
     </form>
   );
 }
