@@ -53,7 +53,12 @@ export default async function ProjectsPage(props: {
           <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
             <Table query={query} currentPage={currentPage} />
           </Suspense>
+<<<<<<< HEAD
 
+=======
+    
+          {/* Pagination */}
+>>>>>>> d41b02bf42ceaf41966a6bf2c1cfe74389079e63
           <div className="text-black mt-6 flex justify-center">
             <Pagination totalPages={totalPages} />
           </div>
