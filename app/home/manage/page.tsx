@@ -5,6 +5,7 @@ import Pagination from "@/app/ui/projects/pagination";
 import { Suspense } from "react";
 import { TableSkeleton } from "@/app/ui/skeletons";
 import Search from "@/app/ui/search";
+import { CreateProject } from "@/app/ui/projects/buttons";
 
 
 export default async function ProjectsPage(props: {
@@ -39,31 +40,26 @@ export default async function ProjectsPage(props: {
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
 
-        <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg">
+      <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg">
 
-          <div className="flex w-full items-center justify-between border-b pb-4">
-            <h1 className="text-2xl text-black font-semibold">Projects</h1>
-          </div>
+        <div className="flex w-full items-center justify-between border-b pb-4">
+          <h1 className="text-2xl text-black font-semibold">Projects</h1>
+        </div>
 
-          <div className="mt-4 flex items-center justify-between gap-4">
-            <Search placeholder="Search Projects..." />
-          </div>
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <Search placeholder="Search Projects..." />
+          <CreateProject />
+        </div>
 
 
-          <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
-            <Table query={query} currentPage={currentPage} />
-          </Suspense>
-<<<<<<< HEAD
-
-=======
-    
-          {/* Pagination */}
->>>>>>> d41b02bf42ceaf41966a6bf2c1cfe74389079e63
-          <div className="text-black mt-6 flex justify-center">
-            <Pagination totalPages={totalPages} />
-          </div>
+        <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
+          <Table query={query} currentPage={currentPage} />
+        </Suspense>
+        <div className="text-black mt-6 flex justify-center">
+          <Pagination totalPages={totalPages} />
         </div>
       </div>
+    </div>
 
   );
 }

@@ -56,7 +56,7 @@ export async function fetchProjects(token: string) {
         //Validate token before filling request
         const { payload } = await jwtVerify(token, JWT_SECRET);
         console.log('Token validated, user payload:', payload);
-        
+
         const data = await sql<Project>`
         SELECT * FROM projects
         ORDER BY due_date`;
@@ -69,19 +69,19 @@ export async function fetchProjects(token: string) {
 
 export async function fetchProjectByPO(po: string) {
     try {
-      const data = await sql<Project>`
+        const data = await sql<Project>`
         SELECT * FROM projects 
         WHERE projects.po = ${po};`;
-      const project = data.rows.map((project) => ({
+        const project = data.rows.map((project) => ({
 
-      }));
+        }));
 
-      return project[0];
+        return project[0];
     } catch (error) {
-      console.error('Database Error:', error);
-      throw new Error('Failed to fetch project.');
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch project.');
     }
-  }
+}
 
 const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredProjects(
@@ -139,79 +139,80 @@ export async function fetchProjectsPages(query: string) {
           projects.clientid::text ILIKE ${`%${query}%`} OR
           projects.vendorid::text ILIKE ${`%${query}%`}
       `;
-    
+
         const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
         return totalPages;
-      } catch (error) {
+    } catch (error) {
         console.error('Database Error:', error);
         throw new Error('Failed to fetch total number of projects.');
-      }
+    }
 }
 
 export async function fetchProjectByID(id: string, token: string) {
-  try {
-      //Validate token before filling request
-      const { payload } = await jwtVerify(token, JWT_SECRET);
-      console.log('Token validated, user payload:', payload);
+    try {
+        //Validate token before filling request
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        console.log('Token validated, user payload:', payload);
 
-      const data = await sql<Project>`
+        const data = await sql<Project>`
       SELECT * FROM projects
       WHERE projects.po::text ILIKE ${`%${id}%`}`;
-      return data.rows;
-  } catch (error) {
-      console.error('Database error: ', error);
-      throw new Error('Failed to fetch project data');
-  }
+        return data.rows;
+    } catch (error) {
+        console.error('Database error: ', error);
+        throw new Error('Failed to fetch project data');
+    }
 }
 
 export async function upsertProject(
-  id: string,
-  updates: Partial<Project>,
-  token: string
+    id: string,
+    token: string,
+    updates: Partial<Project>
 ) {
+    console.log('Token in upsert: ', token);
+    console.log('JWT: ', JWT_SECRET);
+    //Validate token before filling request
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    console.log('Token validated, user payload:', payload);
 
-  //Validate token before filling request
-  const { payload } = await jwtVerify(token, JWT_SECRET);
-  console.log('Token validated, user payload:', payload);
+    const project = await fetchProjectByID(id, token);
+    console.log('in Update', project);
 
-  const project = await fetchProjectByID(id, token);
-  console.log('in Update', project);
+    if (!project) {
+        throw new Error('Project not found');
+    }
 
-  if (!project) {
-      throw new Error('Project not found');
-  }
+    // Handle null or undefined updates by keeping values from the existing project if necessary
+    if (updates.clientid == null) {
+        updates.clientid = project[0].clientid;
+    }
+    if (updates.due_date == null) {
+        updates.due_date = project[0].due_date;
+    }
+    if (updates.name == null) {
+        updates.name = project[0].name;
+    }
+    if (updates.po == null) {
+        updates.po = project[0].po;
+    }
+    if (updates.project_name == null) {
+        updates.project_name = project[0].project_name;
+    }
+    if (updates.salesid == null) {
+        updates.salesid = project[0].salesid;
+    }
+    if (updates.status == null) {
+        updates.status = project[0].status;
+    }
+    if (updates.vendorid == null) {
+        updates.vendorid = project[0].vendorid;
+    }
 
-  // Handle null or undefined updates by keeping values from the existing project if necessary
-  if (updates.clientid == null) {
-      updates.clientid = project[0].clientid;
-  }
-  if (updates.due_date == null) {
-      updates.due_date = project[0].due_date;
-  }
-  if (updates.name == null) {
-      updates.name = project[0].name;
-  }
-  if (updates.po == null) {
-      updates.po = project[0].po;
-  }
-  if (updates.project_name == null) {
-      updates.project_name = project[0].project_name;
-  }
-  if (updates.salesid == null) {
-      updates.salesid = project[0].salesid;
-  }
-  if (updates.status == null) {
-      updates.status = project[0].status;
-  }
-  if (updates.vendorid == null) {
-      updates.vendorid = project[0].vendorid;
-  }
+    console.log('Print updates: ', updates);
 
-  console.log('Print updates: ', updates);
-
-  try {
-      // Use INSERT ... ON CONFLICT for upsert (insert or update)
-      const result = await sql`
+    try {
+        // Use INSERT ... ON CONFLICT for upsert (insert or update)
+        const result = await sql`
       INSERT INTO projects (
         po, 
         salesid, 
@@ -243,10 +244,11 @@ export async function upsertProject(
         vendorid = EXCLUDED.vendorid;
     `;
 
-      console.log('SQL Upsert Result:', result);
-      return result;
-  } catch (error) {
-      console.error('Database error: ', error);
-      throw new Error('Failed to update or insert project data');
-  }
+        console.log('SQL Upsert Result:', result);
+        return result;
+    } catch (error) {
+        console.error('Database error: ', error);
+        throw new Error('Failed to update or insert project data');
+    }
 }
+

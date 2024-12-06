@@ -35,7 +35,7 @@ export default function CreateProjectForm() {
             id="salesid"
             name="salesid"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Sales ID"
             required
           />
@@ -50,7 +50,7 @@ export default function CreateProjectForm() {
             id="name"
             name="name"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Name"
             required
           />
@@ -65,7 +65,7 @@ export default function CreateProjectForm() {
             id="po"
             name="po"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter PO"
             required
           />
@@ -80,7 +80,7 @@ export default function CreateProjectForm() {
             id="status"
             name="status"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Status (e.g., pending, open, close)"
             required
           />
@@ -95,7 +95,7 @@ export default function CreateProjectForm() {
             id="due_date"
             name="due_date"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Due Date (YYYY-MM-DD)"
             required
           />
@@ -110,7 +110,7 @@ export default function CreateProjectForm() {
             id="project_name"
             name="project_name"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Project Name"
             required
           />
@@ -125,7 +125,7 @@ export default function CreateProjectForm() {
             id="clientid"
             name="clientid"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Client ID"
             required
           />
@@ -140,7 +140,7 @@ export default function CreateProjectForm() {
             id="vendorid"
             name="vendorid"
             type="text"
-            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
+            className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 text-black placeholder:text-gray-500"
             placeholder="Enter Vendor ID"
             required
           />
